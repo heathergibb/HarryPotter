@@ -1,12 +1,12 @@
 export default class ExternalServices {
-    constructor (apiPath) {
-        this.apiPath = apiPath
+    constructor (path) {
+        this.path = path
     }
 
     // optional path argument used when the baseURL isn't complete 
     // example baseURL + "/house/gryffindor"
     async getData() {
-        const response = await fetch(this.apiPath);
+        const response = await fetch(this.path);
         const data = await convertToJson(response);
         return data;
     }

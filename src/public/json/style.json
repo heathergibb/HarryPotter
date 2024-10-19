@@ -1,0 +1,21 @@
+[
+    {
+        "House": "gryffindor",
+        "Colors": {
+            "CardBackground": "#740001",
+            "CardFont": "FFFFFF",
+            "CardBorder":" #D3A625"
+        }
+        
+    },
+
+    {
+        "House": "ravenclaw",
+        "Colors": [
+            {
+                "CardBackground": "#0E1A40",
+                "CardFont": "FFFFFF"
+            }
+        ]
+    }
+]

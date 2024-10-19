@@ -1,0 +1,49 @@
+:root {
+    --font-serif: "Bigelow Rules", Georgia, serif;
+    --font-subheading-serif: "DM Serif Display", Georgia, serif;
+}
+
+body {
+    /* background-size: cover; */
+    background-position: center;
+    background-repeat: repeat;
+}
+
+.title {
+    font-family: var(--font-serif);
+    font-size: 32px;
+    text-align: center;
+    text-shadow: 1px 1px 3px white;
+}
+
+.character-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    border-width: 5px;
+    border-style: solid;
+    box-shadow: 4px 4px 15px black;
+    width: 300px;
+    margin: 20px;
+}
+
+.card-link {
+    text-decoration: none;
+}
+.card-header {
+    font-family: var(--font-subheading-serif);
+    /* text-shadow: 1px 1px 3px white; */
+    color:  #D3A625;
+    margin-bottom: 0;
+}
+
+.card-image {
+    padding: 20px;
+}
