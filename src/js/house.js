@@ -12,6 +12,7 @@ const dataSource = new ExternalServices(apiPath);
 const element = document.querySelector(".character-list");
 const house = new HouseDetails(houseName, dataSource, element);
 
+house.preloadStyle();
 house.loadHousePage();
 
 

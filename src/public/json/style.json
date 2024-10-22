@@ -1,21 +1,83 @@
 [
     {
         "House": "gryffindor",
-        "Colors": {
-            "CardBackground": "#740001",
-            "CardFont": "FFFFFF",
-            "CardBorder":" #D3A625"
+        "Style": {
+            "Title": {
+                "Background": "#350d07",
+                "FontColor": "#ffcc99",
+                "Shadow": "2px 2px 3px #740001"
+            },
+            "Card": {
+                "Background": "#740001",
+                "Border": "#D3A625",
+                "Text": "#D3A625"
+            },
+            "Nav": {
+                "BackgroundColor": "#470f07",
+                "BorderColor": "#382714",
+                "FontColor": "#ffcc99"
+            }
         }
-        
     },
-
     {
         "House": "ravenclaw",
-        "Colors": [
-            {
-                "CardBackground": "#0E1A40",
-                "CardFont": "FFFFFF"
+        "Style": {
+            "Title": {
+                "Background": "#350d07",
+                "FontColor": "#e1e1e1",
+                "Shadow": "2px 2px 3px black"
+            },
+            "Card": {
+                "Background": "#0E1A40",
+                "Border": "#bebebe",
+                "Text": "#bebebe"
+            },
+            "Nav": {
+                "BackgroundColor": "#bebebe",
+                "BorderColor": "#5d5d5d",
+                "FontColor": "#0E1A40"
             }
-        ]
-    }
+        }
+    },
+    {
+        "House": "hufflepuff",
+        "Style": {
+            "Title": {
+                "Background": "#350d07",
+                "FontColor": "#f0c75e",
+                "Shadow": "2px 2px 3px black"
+
+            },
+            "Card": {
+                "Background": "#372e29",
+                "Border": "#f0c75e",
+                "Text": "#f0c75e"
+            },
+            "Nav": {
+                "BackgroundColor": "#171006",
+                "BorderColor": "#372e29",
+                "FontColor": "#c1b5a4"
+            }
+        }
+    },
+    {
+        "House": "slytherin",
+        "Style": {
+            "Title": {
+                "Background": "#350d07",
+                "FontColor": "#dddddd",
+                "Shadow": "2px 2px 3px black"
+            },
+            "Card": {
+                "Background": "#2a623d",
+                "Border": "black",
+                "Text": "#dddddd"
+            },
+            "Nav": {
+                "BackgroundColor": "#153b25",
+                "BorderColor": "#2a623d",
+                "FontColor": "#dddddd"
+            }
+        }
+    }   
 ]

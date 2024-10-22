@@ -22,26 +22,23 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
-export function renderWithTemplate(template, parentElement, data, callback) {
-  parentElement.insertAdjacentHTML("afterbegin", template);
-  if(callback) {
-    callback(data);
-  }
-}
-
-export async function loadTemplate(path) {
+export async function loadPartial(path) {
   const html = await fetch(path).then(response => response.text());
   return html;
 }
 
-export async function loadHeaderFooter() {
-  const headerTemplate = await loadTemplate("../partials/header.html");
-  const headerElement = document.getElementById("header");
-  renderWithTemplate(headerTemplate, headerElement);
+export function handleNoImage(imagePath) {
+  return (imagePath == "" || imagePath == null) ? "/images/no-image.webp" : imagePath;
+}
 
-  const footerTemplate = await loadTemplate("../partials/footer.html");
+export async function loadHeaderFooter() {
+  const headerPartial = await loadPartial("../partials/header.html");
+  const headerElement = document.getElementById("header");
+  headerElement.innerHTML = headerPartial;
+
+  const footerPartial = await loadPartial("../partials/footer.html");
   const footerElement = document.getElementById("footer");
-  renderWithTemplate(footerTemplate, footerElement)
+  footerElement.innerHTML = footerPartial;
 
   // Preconnect to Google Fonts
   const preconnect1 = document.createElement("link");
