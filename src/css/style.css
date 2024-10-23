@@ -5,8 +5,6 @@
 }
 
 body {
-    /* default color only, colors will be dynamically applied using js */
-    background-color: white;
     background-position: center;
     background-repeat: repeat;
 }
@@ -14,6 +12,10 @@ body {
 /* NAV */
 
 #header-nav {
+    display: flex;
+    justify-content: space-between;
+    /* colors are set to home page as default
+    they will dynamically change in js for other pages*/
     background-color: #36210a;
     border-color: #382714;
     border-style: groove;
@@ -32,7 +34,7 @@ body {
 .logo img {
     border-radius: 50%;
     object-fit: cover;
-    padding: 5px;
+    padding: 5px 10px;
     transition: transform 0.5s ease, opacity 0.4s ease;
     opacity: 1;
 }
@@ -42,24 +44,69 @@ body {
     opacity: 0.8;
 }
 
-.header-link-container {
+.header-links-small {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     flex-grow: 1;
+}
+
+#dropdown {
+    background-color: transparent;
+    border: none;
+    font-family: var(--font-main);
+    font-size: 20px;
+}
+
+.houses-dropdown {
+    position: relative;
+    flex-direction: column;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    /* colors are set to home page as default
+    they will dynamically change in js for other pages*/
+    background-color: #36210a;
+    border-color: #382714;
+    border-width: 1px;
+    border-style: solid;
+    z-index: 1;
+    width: max-content;
+}
+
+.dropdown-link {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    /* colors are set to home page as default
+    they will dynamically change in js for other pages*/
+    color: #ffcc99;
+}
+
+.dropdown-link:hover {
+    animation: pulse 1.5s ease infinite;
+}
+
+.header-links-large {
+    display: none;
 }
 
 .header-link {
     padding: 10px;
     text-decoration: none;
+    /* colors are set to home page as default
+    they will dynamically change in js for other pages*/
     color: #ffcc99;
 }
 
 .header-link:visited {
+    /* colors are set to home page as default
+    they will dynamically change in js for other pages*/
     color: #ffcc99;
 }
 
 .header-link:hover {
-    /* color: #d3a625; */
     animation: pulse 1.5s ease infinite;
 }
 
@@ -70,10 +117,10 @@ body {
 }
 
 .title {
-    background-color: black;
+    /* background-color: black; */
     background-position:top center;
     background-size: cover;
-    color: white;
+    /* color: white; */
     margin: 0 auto;
     padding: 30px 20px 20px 20px;
     text-align: center;
@@ -81,8 +128,8 @@ body {
     font-size: 32px;
     font-weight: bold;
     letter-spacing: 3px;
-    text-shadow: 2px 2px 3px #ffcc99;
-    color: black;
+    text-shadow: 2px 2px 3px #d3a625;
+    /* color: #ae0001; */
 }
 
 .character-list {
@@ -100,8 +147,8 @@ body {
     width: 300px;
     margin: 20px;
     box-shadow: 4px 4px 15px black;
-    /* colors are default only
-    they should dynamically change in js*/
+    /* colors are set to home page as default
+    they will dynamically change in js for other pages*/
     background-color: #36210a; 
     border: groove 4px black;
 }
@@ -125,18 +172,23 @@ body {
     border-color: white;
 }
 
-/* CHARACTER PAGE */
+/* CHARACTER AND MOVIE PAGES */
 
-.character-detail {
-    background-color: white;
+.detail-card {
     display: block;
     justify-content: center;
+    width: 100%;
+    max-width: 800px;
     padding: 20px;
-    margin: 20px;
-    border-color: black;
+    margin: 20px auto;
     border-style: groove;
     border-width: 5px;
     box-shadow: 4px 4px 15px black;
+    box-sizing: border-box;
+    /* colors are set to movie default 
+    they will change dynamically for other pages using js*/
+    border-color: #D3A625;
+    background-color: #740001;
 }
 
 .detail-container {
@@ -145,22 +197,60 @@ body {
     gap: 20px;
     font-family: var(--font-text);
     font-size: 22px;
+    color: #f2e1a9;
+    max-width: 100%;
 }
 
 .detail-title {
+    text-align: center;
     font-family: var(--font-title);
     margin: 0;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
+    color: #f2e1a9;
 }
 
 .detail-img {
+    margin: 0 auto;
+    margin-top: 10px;
     width: 100%;
-    border-color: black;
+    max-width: 400px;
+    border-color: #D3A625;
     border-style: solid;
     border-width: 4px;
     box-sizing: border-box;
+    display: block;
 }
 
+.tagline {
+    font-style: italic;
+    margin: 0 0 20px 0;
+    color: #D3A625;
+    text-align: center;
+}
+
+.homepage-link {
+    color: #D3A625;
+    /* text-decoration: none; */
+}
+
+.homepage-link {
+    color: #D3A625;
+}
+
+footer {
+    padding: 15px;
+    font-family: var(--font-main);
+    font-size: 20px;
+    text-align: center;
+    border-style: groove;
+    border-width: 5px;
+    /* colors are set to home page as default
+    they will dynamically change in js for other pages*/
+    background-color: #36210a;
+    border-color: #382714;
+    color: #ffcc99;
+    
+}
 
 @keyframes pulse {
     0% {
@@ -176,11 +266,27 @@ body {
 }
 
 @media (min-width: 800px) {
+    .header-links-large {
+        display: flex;   
+        justify-content: space-around;
+        flex-grow: 1;
+    }
+
+    .header-links-small {
+        display: none;
+    }
+
     .title {
         font-size: 48px;
     }
 
+    .detail-card {
+        padding: 40px;
+    }
+
     .detail-container {
         grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        font-size: 18px;
     }
 }

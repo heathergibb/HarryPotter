@@ -1,9 +1,29 @@
 [
     {
-        "House": "gryffindor",
+        "Id": "movies",
         "Style": {
             "Title": {
-                "Background": "#350d07",
+                "Background": "black",
+                "FontColor": "#f2e1a9",
+                "Shadow": "2px 2px 3px #740001"
+            },
+            "Card": {
+                "Background": "#740001",
+                "Border": "#D3A625",
+                "Text": "#D3A625"
+            },
+            "Nav": {
+                "BackgroundColor": "#ae0001",
+                "BorderColor": "#382714",
+                "FontColor": "#f2e1a9"
+            }
+        }
+    },
+    {
+        "Id": "gryffindor",
+        "Style": {
+            "Title": {
+                "Background": "black",
                 "FontColor": "#ffcc99",
                 "Shadow": "2px 2px 3px #740001"
             },
@@ -20,10 +40,10 @@
         }
     },
     {
-        "House": "ravenclaw",
+        "Id": "ravenclaw",
         "Style": {
             "Title": {
-                "Background": "#350d07",
+                "Background": "black",
                 "FontColor": "#e1e1e1",
                 "Shadow": "2px 2px 3px black"
             },
@@ -40,10 +60,10 @@
         }
     },
     {
-        "House": "hufflepuff",
+        "Id": "hufflepuff",
         "Style": {
             "Title": {
-                "Background": "#350d07",
+                "Background": "black",
                 "FontColor": "#f0c75e",
                 "Shadow": "2px 2px 3px black"
 
@@ -61,10 +81,10 @@
         }
     },
     {
-        "House": "slytherin",
+        "Id": "slytherin",
         "Style": {
             "Title": {
-                "Background": "#350d07",
+                "Background": "black",
                 "FontColor": "#dddddd",
                 "Shadow": "2px 2px 3px black"
             },

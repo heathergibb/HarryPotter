@@ -1,9 +1,9 @@
-import { handleNoImage } from "./utils.mjs";
+import { handleNoImage, customizeHeaderFooter } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 export default class CharacterDetails {
     constructor(charId, dataSource) {
-        this.charId = charId
+        this.charId = charId;
         this.data = [];
         this.dataSource = dataSource;
     }
@@ -12,7 +12,7 @@ export default class CharacterDetails {
         const characters = await this.dataSource.getData();
         this.data = characters.find((character) => character.id === this.charId);
 
-        const element = document.querySelector(".character-detail");
+        const element = document.querySelector(".detail-card");
         const templateHTML = characterDetailTemplate(this.data);
  
         element.insertAdjacentHTML("afterbegin", templateHTML);
@@ -30,20 +30,14 @@ export default class CharacterDetails {
         const service = new ExternalServices("/json/style.json");
         const data = await service.getData();
         // get style choices for this house
-        const styleData = data.find(item => item.House.toLowerCase() === house);
-        const headerNav = document.querySelector("#header-nav");
-        const headerLinks = document.querySelectorAll(".header-link");
+        const styleData = data.find(item => item.Id.toLowerCase() === house);
         const title = document.querySelector(".detail-title");
         const image = document.querySelector(".detail-img");
         const details = document.querySelector(".detail-container");
-        const card = document.querySelector(".character-detail");
+        const card = document.querySelector(".detail-card");
 
-        // alter nav colors
-        headerNav.style.backgroundColor = styleData.Style.Nav.BackgroundColor;
-        headerNav.style.borderColor = styleData.Style.Nav.BorderColor;
-        headerLinks.forEach(link => {
-            link.style.color = styleData.Style.Nav.FontColor;
-        });
+        // alter nav and footer colors
+        customizeHeaderFooter(styleData);
 
         // style card
         card.style.backgroundColor = styleData.Style.Card.Background;
@@ -53,7 +47,6 @@ export default class CharacterDetails {
         image.style.borderColor = styleData.Style.Card.Border;
 
         details.style.color = styleData.Style.Card.Text;
-
     }
 }
 

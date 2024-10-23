@@ -54,8 +54,55 @@ export async function loadHeaderFooter() {
 
   // Link to the fonts stylesheet
   const fontLink = document.createElement("link");
-  fontLink.href = "https://fonts.googleapis.com/css2?family=Bigelow+Rules&family=DM+Serif+Display:ital@0;1&display=swap";
+  fontLink.href = "https://fonts.googleapis.com/css2?family=Averia+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Cinzel:wght@400..900&family=DM+Serif+Display:ital@0;1&display=swap";
   fontLink.rel = "stylesheet";
   document.head.appendChild(fontLink);
+
+  addNavEventListeners();
 }
 
+export async function addNavEventListeners() {
+  const housesBtn = document.querySelector("#dropdown");
+  const houseLinks = document.querySelector(".dropdown-content");
+
+  houseLinks.style.display = "none";
+
+  housesBtn.addEventListener("click", () => {
+      if (houseLinks.style.display === "block") {
+          houseLinks.style.display = "none";
+      } else {
+          houseLinks.style.display = "block";
+      }
+
+  });
+
+  window.addEventListener("click", (event) => {
+      if (!housesBtn.contains(event.target) && !houseLinks.contains(event.target)) {
+          houseLinks.style.display = "none";
+      }
+  })  
+}
+
+export async function customizeHeaderFooter(styleData) {
+  const headerNav = document.querySelector("#header-nav");
+  const headerLinks = document.querySelectorAll(".header-link");
+  const dropdown = document.querySelector(".dropdown-content");
+  const dropdownLinks = document.querySelectorAll(".dropdown-link");
+  const footer = document.querySelector("footer");
+  
+  headerNav.style.backgroundColor = styleData.Style.Nav.BackgroundColor;
+  headerNav.style.borderColor = styleData.Style.Nav.BorderColor;
+  headerLinks.forEach(link => {
+      link.style.color = styleData.Style.Nav.FontColor;
+  });
+  dropdown.style.backgroundColor = styleData.Style.Nav.BackgroundColor;
+  dropdown.style.borderColor = styleData.Style.Nav.BorderColor;
+  dropdownLinks.forEach(link => {
+      link.style.color = styleData.Style.Nav.FontColor;
+  })
+
+  // alter footer colors
+  footer.style.backgroundColor = styleData.Style.Nav.BackgroundColor;
+  footer.style.borderColor = styleData.Style.Nav.BorderColor;
+  footer.style.color = styleData.Style.Nav.FontColor;
+}

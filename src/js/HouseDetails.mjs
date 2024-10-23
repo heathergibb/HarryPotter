@@ -1,5 +1,5 @@
 import ExternalServices from "./ExternalServices.mjs";
-import { renderListWithTemplate, handleNoImage } from "./utils.mjs";
+import { renderListWithTemplate, handleNoImage, customizeHeaderFooter } from "./utils.mjs";
 
 export default class HouseDetails {
     constructor(houseName, dataSource, element) {
@@ -31,23 +31,18 @@ export default class HouseDetails {
         const service = new ExternalServices("/json/style.json");
         const data = await service.getData();
         // get style choices for this house
-        const styleData = data.find(item => item.House.toLowerCase() === this.houseName.toLowerCase());
-        const headerNav = document.querySelector("#header-nav");
-        const headerLinks = document.querySelectorAll(".header-link");
+        const styleData = data.find(item => item.Id.toLowerCase() === this.houseName.toLowerCase());
         const title = document.querySelector(".title");
         const cards = document.querySelectorAll(".card");
 
         // style title section
         title.style.color = styleData.Style.Title.FontColor;
         title.style.textShadow = styleData.Style.Title.Shadow;
+        title.style.backgroundColor = styleData.Style.Title.Background;
 
-        // alter nav colors
-        headerNav.style.backgroundColor = styleData.Style.Nav.BackgroundColor;
-        headerNav.style.borderColor = styleData.Style.Nav.BorderColor;
-        headerLinks.forEach(link => {
-            link.style.color = styleData.Style.Nav.FontColor;
-        });
-    
+        // alter nav and footer colors
+        customizeHeaderFooter(styleData);
+            
         // style character cards
         cards.forEach((card) => {
             card.style.backgroundColor = styleData.Style.Card.Background;
