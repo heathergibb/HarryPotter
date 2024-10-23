@@ -9,16 +9,16 @@ export default class MovieList {
     }
 
     async loadMoviesPage(search) {
-        // set background image
-        const body = document.body.style;
-        body.backgroundImage = `url("/images/movies/background.webp")`;
-
-        //search for movies by search parameter
+        // search for movies by search parameter, return an array of movie ids
         this.movieIds = await this.dataSource.getMovieIdsBySearch(search, "movie");
 
+        // using an array of movie ids, create an array of movie details for each movie id
         const movieList = await Promise.all(this.movieIds.map((id) => this.dataSource.getMovieDataById(id)));
 
+        // build the page using the movie list array data
         renderListWithTemplate(movieCardTemplate, this.element, movieList, "afterbegin", false);
+        
+        // load customized styling based on data source
         this.customizeDisplay();
     }
 

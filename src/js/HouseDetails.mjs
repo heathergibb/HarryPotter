@@ -2,9 +2,9 @@ import ExternalServices from "./ExternalServices.mjs";
 import { renderListWithTemplate, handleNoImage, customizeHeaderFooter } from "./utils.mjs";
 
 export default class HouseDetails {
-    constructor(houseName, dataSource, element) {
+    constructor(houseName, characterList, element) {
         this.houseName = houseName.toLowerCase();
-        this.dataSource = dataSource;
+        this.characterList = characterList;
         this.element = element;
     }
 
@@ -12,18 +12,10 @@ export default class HouseDetails {
         const title = document.querySelector(".title");
         title.textContent = `Welcome to ${this.houseName.charAt(0).toUpperCase() + this.houseName.slice(1)}!`;
         
-        const characterList = await this.dataSource.getData();
+        // const characterList = await this.dataSource.getData();
   
-        renderListWithTemplate(characterCardTemplate, this.element, characterList, "afterbegin", false);
+        renderListWithTemplate(characterCardTemplate, this.element, this.characterList, "afterbegin", false);
         this.customizeDisplay();
-    }
-    async preloadStyle() {
-        // set background image
-        const body = document.body.style;
-        body.backgroundImage = `url("/images/${this.houseName}/background.webp")`;
-
-        const title = document.querySelector(".title");
-        title.style.backgroundImage = `url("/images/${this.houseName}/title.webp")`;
     }
 
     async customizeDisplay() {

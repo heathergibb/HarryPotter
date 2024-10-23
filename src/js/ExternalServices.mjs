@@ -21,13 +21,6 @@ export default class ExternalServices {
       const data = await convertToJson(response);
       return data;
     }
-  
-
-    // async getActorData(searchName) {
-    //     const response = await fetch(`${this.path}person?api_key=${import.meta.env.VITE_MOVIE_API_KEY}&query=${encodeURIComponent(searchName)}`);
-    //     const data = await convertToJson(response);
-    //     return data;
-    // }
 }
 
 function getMovieOptions() {

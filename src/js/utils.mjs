@@ -14,6 +14,12 @@ export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
 
+export function isFavorite(charId) {
+  const favList = getLocalStorage("favArray") || [];
+  const result = favList.find((data) => data.id == charId);
+  return result ? true : false;
+}
+
 export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
   const htmlStrings = list.map(templateFn); 
   if (clear) {
@@ -105,4 +111,13 @@ export async function customizeHeaderFooter(styleData) {
   footer.style.backgroundColor = styleData.Style.Nav.BackgroundColor;
   footer.style.borderColor = styleData.Style.Nav.BorderColor;
   footer.style.color = styleData.Style.Nav.FontColor;
+}
+
+export async function preloadBasicStyling(page) {
+    // set background image
+    const body = document.body.style;
+    body.backgroundImage = `url("/images/${page}/background.webp")`;
+
+    const title = document.querySelector(".title");
+    title.style.backgroundImage = `url("/images/${page}/title.webp")`;
 }

@@ -1,4 +1,4 @@
-import { handleNoImage, customizeHeaderFooter } from "./utils.mjs";
+import { handleNoImage, customizeHeaderFooter, isFavorite, setLocalStorage, getLocalStorage } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 export default class CharacterDetails {
@@ -18,6 +18,8 @@ export default class CharacterDetails {
         element.insertAdjacentHTML("afterbegin", templateHTML);
 
         this.customizeDisplay();
+        this.addFavButtonListener();
+
     }
 
     async customizeDisplay() {
@@ -35,6 +37,7 @@ export default class CharacterDetails {
         const image = document.querySelector(".detail-img");
         const details = document.querySelector(".detail-container");
         const card = document.querySelector(".detail-card");
+        const favButton = document.querySelector(".fav-button");
 
         // alter nav and footer colors
         customizeHeaderFooter(styleData);
@@ -43,26 +46,56 @@ export default class CharacterDetails {
         card.style.backgroundColor = styleData.Style.Card.Background;
         card.style.borderColor = styleData.Style.Card.Border;    
 
+        favButton.style.color = styleData.Style.Card.Text;
         title.style.color = styleData.Style.Card.Text;
         image.style.borderColor = styleData.Style.Card.Border;
 
         details.style.color = styleData.Style.Card.Text;
     }
+
+    async addFavButtonListener() {
+        document.querySelector(".fav-button").addEventListener("click", () => {
+            toggleFavorite(this.data);
+        })
+    }
+}
+
+function toggleFavorite(charData) {
+    const favButton = document.querySelector(".fav-button");
+
+    // get the current favorites array or make an empty one
+    const favList = getLocalStorage("favArray") || [];
+
+    // if the character is not already in the array, add them
+    if (!favList.some(item => item.id === charData.id)) {
+        favList.push(charData);
+        setLocalStorage("favArray", favList);
+        favButton.innerHTML = "&#9733;"
+    } else {
+        //if the character is already in the array, take them out
+        const updatedFavList = favList.filter(item => item.id !== charData.id);
+        setLocalStorage("favArray", updatedFavList);
+        favButton.innerHTML = "&#x2606;"
+    }
 }
 
 function characterDetailTemplate(data) {
+    // if the character exists in the favorites array, set to filled star, otherwise set to unfilled
+    // &#9733; = filled  &#x2606; = unfilled
+    const favIcon = isFavorite(data.id) ? "&#9733;" : "&#x2606;";
     let template 
     template = `<h1 class=detail-title>${data.name}</h1>`;
+    template += `<button class="fav-button">${favIcon}</button>`
     template += `<div class="detail-container">`;
     template += `<img class="detail-img" src="${handleNoImage(data.image)}" width="300" alt="image of ${data.name}">`;
     template += `<table class="details-table">`;
+    // if the alternate name array has data then list them on the table
     if (data.alternate_names.length > 0) {
         template += `<tr><td class="details-label">Alternate Names:</td><td>${data.alternate_names[0]}</td></tr>`;
-        
+        // make a new table row for each alternate name
         for (let i = 1; i < data.alternate_names.length; i++) {
             template += `<tr><td></td><td>${data.alternate_names[i]}</td></tr>`;
         }
-        
     }
     template += `<tr><td class="details-label">Gender: </td><td>${handleEmptyString(toTitleCase(data.gender))}</td></tr>`;
     template += `<tr><td class="details-label">Date of Birth: </td><td>${data.dateOfBirth}</td></tr>`;
