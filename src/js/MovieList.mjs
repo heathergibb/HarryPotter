@@ -40,7 +40,7 @@ export default class MovieList {
 
 function movieCardTemplate(movie) {
     let template;
-    template = `<div class="detail-card">`
+    template = `<div class="movie-detail-card">`
     template += `<h2 class="detail-title">${movie.title}</h2>`
     template += `<h3 class="tagline">${movie.tagline}</h3>`
     template += `<div class="detail-container">`;

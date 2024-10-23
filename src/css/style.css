@@ -177,14 +177,15 @@ body {
 .fav-button {
     background-color: transparent;
     border: none;
-    font-size: 40px;
+    font-size: 30px;
+    padding: 10px 10px 20px 20px;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 0;
+    right: 0;
     cursor: pointer;
 }
 
-.detail-card {
+.detail-card, .movie-detail-card {
     display: block;
     position: relative;
     justify-content: center;
@@ -204,9 +205,7 @@ body {
 }
 
 .detail-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
+    display: block;
     font-family: var(--font-text);
     font-size: 22px;
     color: #f2e1a9;
@@ -215,6 +214,7 @@ body {
 
 .detail-title {
     text-align: center;
+    font-size: 24px;
     font-family: var(--font-title);
     margin: 0;
     padding-bottom: 10px;
@@ -222,15 +222,20 @@ body {
 }
 
 .detail-img {
-    margin: 0 auto;
-    margin-top: 10px;
+    margin: 10px auto;
     width: 100%;
+    height: auto;
     max-width: 400px;
     border-color: #D3A625;
     border-style: solid;
     border-width: 4px;
     box-sizing: border-box;
     display: block;
+}
+
+.details-table {
+    margin: 0 auto;    
+    border-spacing: 5px;   
 }
 
 .tagline {
@@ -242,7 +247,6 @@ body {
 
 .homepage-link {
     color: #D3A625;
-    /* text-decoration: none; */
 }
 
 .homepage-link {
@@ -250,12 +254,13 @@ body {
 }
 
 footer {
-    padding: 15px;
+    width: 100%;
+    padding: 5px;
     font-family: var(--font-main);
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
     border-style: groove;
-    border-width: 5px;
+    border-width: 2px;
     /* colors are set to home page as default
     they will dynamically change in js for other pages*/
     background-color: #36210a;
@@ -292,13 +297,42 @@ footer {
         font-size: 48px;
     }
 
+    .detail-title {
+        font-size: 28px;
+    }
+
     .detail-card {
-        padding: 40px;
+        padding: 20px 40px 40px 40px; 
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 
     .detail-container {
+        display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 40px;
         font-size: 18px;
+    }
+
+    .details-table {
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    .details-table td {
+        padding: 8px;
+    }
+
+    .fav-button {
+        top: 10px;
+        right: 10px;
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
     }
 }
