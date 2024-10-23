@@ -15,7 +15,8 @@ export default defineConfig({
         main: resolve(__dirname, "src/index.html"),
         house: resolve(__dirname, "src/house/index.html"),
         character: resolve(__dirname, "src/character/index.html"),
-        movies: resolve(__dirname, "src/movies/index.html")
+        movies: resolve(__dirname, "src/movies/index.html"),
+        favorites: resolve(__dirname, "src/favorites/index.html")
       },
     },
   },
