@@ -18,7 +18,7 @@ export default class CharacterDetails {
         const templateHTML = characterDetailTemplate(this.data);
         element.insertAdjacentHTML("afterbegin", templateHTML);
 
-        // customize colors and backgrounds based on house
+        // customize colors and backgrounds based on page
         this.customizeDisplay();
 
         //add an event listener on the favorites button
@@ -27,12 +27,12 @@ export default class CharacterDetails {
     }
 
     async customizeDisplay() {
-        const house = this.data.house.toLowerCase();
+        const page = this.data.house.toLowerCase();
         // set background image
         const body = document.body.style;
-        body.backgroundImage = `url("/images/${house}/background.webp")`;   
+        body.backgroundImage = `url("/images/${page}/background.webp")`;   
 
-        const styleData = await getStyleData(house);
+        const styleData = await getStyleData(page);
         const title = document.querySelector(".detail-title");
         const image = document.querySelector(".detail-img");
         const details = document.querySelector(".detail-container");

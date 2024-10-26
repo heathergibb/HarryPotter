@@ -1,20 +1,20 @@
 import { renderListWithTemplate, handleNoImage, customizeHeaderFooter, getStyleData, getLocalStorage } from "./utils.mjs";
 
-export default class HouseDetails {
-    constructor(houseName, characterList, element) {
-        this.houseName = houseName.toLowerCase();
+export default class PageDetails {
+    constructor(pageName, characterList, element) {
+        this.pageName = pageName.toLowerCase();
         this.characterList = characterList;
         this.element = element;
     }
 
-    async loadHousePage() {
+    async loadPage() {
         // create the customized title based on the selected page
-        let titleVariable = this.houseName;
+        let titleVariable = this.pageName;
         // if the page is "favorites", get the username from localStorage
         // and use it in the title
         if (titleVariable.toLowerCase() === "favorites") {
             let name = getLocalStorage("username");
-            titleVariable = (name == "" || name == null) ? titleVariable : `${name}'s ${titleVariable} `;
+            titleVariable = (name == "" || name == null) ? titleVariable : `${name}'s ${titleVariable}`;
         }
         
         const title = document.querySelector(".title");
@@ -26,10 +26,10 @@ export default class HouseDetails {
     }
 
     async customizeDisplay() {
-        let styleId = this.houseName;
+        let styleId = this.pageName;
         //if this is the favorites page, select the styleId/category
         //from the localStorage.
-        if (this.houseName.toLowerCase() === "favorites") {
+        if (this.pageName.toLowerCase() === "favorites") {
             const color = getLocalStorage("color");
             //if no color saved to localStorage, default to brown
             styleId = (color == "" || color == null) ? "brown" : color;

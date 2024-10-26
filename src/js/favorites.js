@@ -1,4 +1,4 @@
-import HouseDetails from "./HouseDetails.mjs";
+import PageDetails from "./PageDetails.mjs";
 import { getLocalStorage, initPage, preloadBasicStyling } from "./utils.mjs";
 
 initPage();
@@ -8,5 +8,5 @@ preloadBasicStyling(pageName);
 
 const characterList = getLocalStorage("favArray") || [];
 const element = document.querySelector(".character-list");
-const house = new HouseDetails(pageName, characterList, element);
-house.loadHousePage();
+const page = new PageDetails(pageName, characterList, element);
+page.loadPage();

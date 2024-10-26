@@ -380,10 +380,7 @@ body {
 
 .homepage-link {
     color: #D3A625;
-}
-
-.homepage-link {
-    color: #D3A625;
+    word-break: break-word;
 }
 
 footer {
