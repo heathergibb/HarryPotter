@@ -112,24 +112,157 @@ body {
 
 /* END OF NAV */
 
+/* HOME PAGE */
 #home-page {
     background-image: url("/images/background.webp");
 }
 
+.title-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#header-door {
+    right: 20px;
+    width: 60px;
+    height: 80px;
+    border: solid 2px #36210a;
+    border-radius: 5px;
+    background-size: cover;
+    background-image: url("/images/closed-door.webp");
+    transition: background-image 0.2s ease;
+}
+
+#header-door:hover {
+    background-image: url("/images/open-door.webp");
+    cursor: pointer;
+}
+
+#personalize-dialog {
+    background-color: #c58f5d;
+    padding: 10px;
+    border: solid 5px #36210a;
+}
+
+.dialog-header-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#close-modal {
+    color: #36210a;
+    font-family: var(--font-title);
+    font-weight: bold;
+    font-size: 24px;
+    background-color: transparent;
+    border: none;
+    padding: 20px;
+}
+
+.dialog-header {
+    font-family: var(--font-title);
+    font-size: 26px;
+    font-weight: bold;
+    color: #36210a;
+    margin: 0;
+    padding: 30px;
+}
+
+#pesonalize-form {
+    display: flex;
+    flex-direction: column;
+    padding: 0 30px 30px 30px;
+    font-family: var(--font-text);
+    font-size: 22px;
+}
+
+.form-label {
+    margin-bottom: 20px;
+}
+
+#username, #user-color {
+    font-size: 18px;
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#submit {
+    padding: 15px;
+    background-color:#36210a;
+    color: #ffcc99;
+    font-family: var(--font-main);
+    font-size: 20px;
+    margin-top: 20px;
+    width: 50%;
+    align-self: center;
+}
+
+.doors-container {
+    padding: 20px;
+    justify-self: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 100%;
+    justify-items: center;
+    align-items: center; 
+    box-sizing: border-box;
+}
+
+.door-link img{
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    max-height: calc(50% - 60px);
+    border: 5px groove #36210a;
+}
+
+.door-link:hover {
+    cursor: url("/images/wand.png") 6 8, pointer;
+    animation: shake .75s ease-in-out;
+}
+
+.title-wrapper { 
+    color: #36210a;
+    background-color: #c58f5d;
+    margin: 0 auto;
+    padding: 20px 10px 5px 10px;
+    text-align: center;
+    letter-spacing: 3px;
+    border: 3px groove #382714;
+    border-top: none;
+}
+
+.title-wrapper h1 {
+    margin: 0;
+    font-size: 38px;
+    font-family: var(--font-title);
+    font-weight: bold;
+}
+
+.title-wrapper p {
+    font-family: var(--font-main);
+    font-size: 18px;
+    font-style: italic;
+    margin: 5px;
+}
+
 .title {
-    /* background-color: black; */
+    font-size: 48px;
+    color: #ffcc99;
+    background-color: black;
     background-position:top center;
     background-size: cover;
-    /* color: white; */
     margin: 0 auto;
     padding: 30px 20px 20px 20px;
     text-align: center;
     font-family: var(--font-title);
-    font-size: 32px;
     font-weight: bold;
     letter-spacing: 3px;
     text-shadow: 2px 2px 3px #d3a625;
-    /* color: #ae0001; */
 }
 
 .character-list {
@@ -282,6 +415,19 @@ footer {
     }
 }
 
+@keyframes shake {
+    0%, 100% {transform: rotate(0);}
+    10% { transform: rotate(2deg); }
+    20% { transform: rotate(-2deg); }
+    30% { transform: rotate(2deg); }
+    40% { transform: rotate(-2deg); }
+    50% { transform: rotate(1deg); }
+    60% { transform: rotate(-1deg); }
+    70% { transform: rotate(0.5deg); }
+    80% { transform: rotate(-0.5deg); }
+    90% { transform: rotate(0.2deg); }
+}
+
 @media (min-width: 800px) {
     .header-links-large {
         display: flex;   
@@ -293,8 +439,30 @@ footer {
         display: none;
     }
 
-    .title {
-        font-size: 48px;
+    .title-wrapper {
+        position: relative;
+    }
+
+    #header-door {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+    }
+    .doors-wrapper {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        max-width: 1000px;
+        height: 70vh;
+    }
+
+    .doors-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .door-link img {
+        height: calc(40vh - 60px);
+        width: auto;
     }
 
     .detail-title {
@@ -334,5 +502,16 @@ footer {
         position: fixed;
         bottom: 0;
         left: 0;
+    }
+}
+
+@media (min-width: 1400px) {
+    .doors-wrapper {
+        max-width: 1400px;
+        justify-content: center;
+    }
+    
+    .doors-container {
+        grid-template-columns: 1fr 1fr 1fr 1fr;    
     }
 }

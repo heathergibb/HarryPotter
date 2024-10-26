@@ -1,7 +1,7 @@
 import HouseDetails from "./HouseDetails.mjs";
-import { getLocalStorage, loadHeaderFooter, preloadBasicStyling } from "./utils.mjs";
+import { getLocalStorage, initPage, preloadBasicStyling } from "./utils.mjs";
 
-loadHeaderFooter();
+initPage();
 
 const pageName = "favorites";
 preloadBasicStyling(pageName);

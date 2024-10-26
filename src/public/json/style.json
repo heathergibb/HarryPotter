@@ -99,5 +99,125 @@
                 "FontColor": "#dddddd"
             }
         }
-    }   
+    },
+    {
+        "Id": "default",
+        "Style": {
+            "Title": {
+                "Background": "#d6ceb4",
+                "FontColor": "#36210a",
+                "Shadow": "none"
+            },
+            "Card": {
+                "Background": "#36210a",
+                "Border": "#ffcc99",
+                "Text": "#ffcc99"
+            },
+            "Nav": {
+                "BackgroundColor": "#36210a",
+                "BorderColor": "#382714",
+                "FontColor": "#ffcc99"
+            }
+        }
+    },
+    {
+        "Id": "brown",
+        "Style": {
+            "Title": {
+                "Background": "#c58f5d",
+                "FontColor": "#36210a",
+                "Shadow": "none"
+            },
+            "Card": {
+                "Background": "#36210a",
+                "Border": "#ffcc99",
+                "Text": "#ffcc99"
+            },
+            "Nav": {
+                "BackgroundColor": "#36210a",
+                "BorderColor": "#382714",
+                "FontColor": "#ffcc99"
+            }
+        }
+    },
+    {
+        "Id": "black",
+        "Style": {
+            "Title": {
+                "Background": "black",
+                "FontColor": "grey",
+                "Shadow": "none"
+            },
+            "Card": {
+                "Background": "black",
+                "Border": "grey",
+                "Text": "#dfe1e8"
+            },
+            "Nav": {
+                "BackgroundColor": "black",
+                "BorderColor": "grey",
+                "FontColor": "#dfe1e8"
+            }
+        }
+    },
+    {
+        "Id": "grey",
+        "Style": {
+            "Title": {
+                "Background": "#b2b3ab",
+                "FontColor": "black",
+                "Shadow": "none"
+            },
+            "Card": {
+                "Background": "#52514e",
+                "Border": "black",
+                "Text": "#dfe1e8"
+            },
+            "Nav": {
+                "BackgroundColor": "#52514e",
+                "BorderColor": "black",
+                "FontColor": "#dfe1e8"
+            }
+        }
+    },
+    {
+        "Id": "purple",
+        "Style": {
+            "Title": {
+                "Background": "#e8b9fe",
+                "FontColor": "black",
+                "Shadow": "none"
+            },
+            "Card": {
+                "Background": "#4b006e",
+                "Border": "#281045",
+                "Text": "#d7d2d9"
+            },
+            "Nav": {
+                "BackgroundColor": "#281045",
+                "BorderColor": "black",
+                "FontColor": "#d7d2d9"
+            }
+        }
+    },
+    {
+        "Id": "orange",
+        "Style": {
+            "Title": {
+                "Background": "#cf7d13",
+                "FontColor": "black",
+                "Shadow": "none"
+            },
+            "Card": {
+                "Background": "#804d0b",
+                "Border": "#cf7d13",
+                "Text": "#d7d2d9"
+            },
+            "Nav": {
+                "BackgroundColor": "#804d0b",
+                "BorderColor": "#cf7d13",
+                "FontColor": "#d7d2d9"
+            }
+        }
+    }               
 ]

@@ -1,8 +1,8 @@
 import ExternalServices from "./ExternalServices.mjs";
-import { getURLParam, loadHeaderFooter } from "./utils.mjs";
+import { getURLParam, initPage } from "./utils.mjs";
 import CharacterDetails from "./CharacterDetails.mjs";
 
-loadHeaderFooter();
+initPage();
 
 //get character id from the url
 const charId = getURLParam("id");

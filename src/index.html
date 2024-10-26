@@ -13,8 +13,50 @@
   
   <body id="home-page">
     <header id="header"></header>
-    
-    <p>Hello</p>
+      <div class="title-wrapper">
+        <div id="header-door" aria-label="wooden castle door"></div>
+        <h1 id="home-welcome">Welcome to Hogwarts</h1>
+        <p>Open a door to explore...</p>
+      </div>
+    <div class="doors-wrapper">
+      <div class="doors-container">
+        <a class="door-link" href="/house/index.html?house=gryffindor">
+          <img src="/images/gryffindor/door.webp" width="300" height="400" alt="red castle style door">
+        </a>  
+        <a class="door-link" href="/house/index.html?house=ravenclaw">
+          <img src="/images/ravenclaw/door.webp" width="300" height="400" alt="red castle style door">
+        </a>
+        <a class="door-link" href="/house/index.html?house=hufflepuff">
+          <img src="/images/hufflepuff/door.webp" width="300" height="400" alt="red castle style door">
+        </a>
+        <a class="door-link" href="/house/index.html?house=slytherin">
+          <img src="/images/slytherin/door.webp" width="300" height="400" alt="red castle style door">
+        </a>
+      </div>
+    </div>
+
+    <!-- Modal Dialog Form -->
+    <dialog id="personalize-dialog">
+      <div class="dialog-header-container">
+        <h2 class="dialog-header">Customize Your Experience</h2>
+        <button id="close-modal">X</button>
+      </div>
+      <form method="dialog" id="pesonalize-form">
+        <label class="form-label">Name:
+          <input type="text" id="username" placeholder="Enter your name..." name="name"></label>
+        <label class="form-label">Select a color for your Favorites page:
+          <select id="user-color" name="color">
+            <option value="black">Black</option>
+            <option value="brown">Brown</option>
+            <option value="grey">Grey</option>
+            <option value="purple">Purple</option>
+            <option value="orange">Orange</option>
+          </select>
+        </label>
+        <button id="submit" type="submit">Submit</button>
+      </form>
+    </dialog>
+
 
     <footer id="footer"></footer>
   </body>

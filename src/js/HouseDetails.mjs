@@ -1,5 +1,4 @@
-import ExternalServices from "./ExternalServices.mjs";
-import { renderListWithTemplate, handleNoImage, customizeHeaderFooter } from "./utils.mjs";
+import { renderListWithTemplate, handleNoImage, customizeHeaderFooter, getStyleData, getLocalStorage } from "./utils.mjs";
 
 export default class HouseDetails {
     constructor(houseName, characterList, element) {
@@ -9,21 +8,36 @@ export default class HouseDetails {
     }
 
     async loadHousePage() {
-        const title = document.querySelector(".title");
-        title.textContent = `Welcome to ${this.houseName.charAt(0).toUpperCase() + this.houseName.slice(1)}!`;
+        // create the customized title based on the selected page
+        let titleVariable = this.houseName;
+        // if the page is "favorites", get the username from localStorage
+        // and use it in the title
+        if (titleVariable.toLowerCase() === "favorites") {
+            let name = getLocalStorage("username");
+            titleVariable = (name == "" || name == null) ? titleVariable : `${name}'s ${titleVariable} `;
+        }
         
-        // const characterList = await this.dataSource.getData();
-  
+        const title = document.querySelector(".title");
+        title.textContent = `Welcome to ${titleVariable.charAt(0).toUpperCase() + titleVariable.slice(1)}!`;
+        
+        // load the page with the dynamically created template
         renderListWithTemplate(characterCardTemplate, this.element, this.characterList, "afterbegin", false);
-        this.customizeDisplay();
+        this.customizeDisplay(); //load custom colors and styling
     }
 
     async customizeDisplay() {
-        // get the style information from json file        
-        const service = new ExternalServices("/json/style.json");
-        const data = await service.getData();
-        // get style choices for this house
-        const styleData = data.find(item => item.Id.toLowerCase() === this.houseName.toLowerCase());
+        let styleId = this.houseName;
+        //if this is the favorites page, select the styleId/category
+        //from the localStorage.
+        if (this.houseName.toLowerCase() === "favorites") {
+            const color = getLocalStorage("color");
+            //if no color saved to localStorage, default to brown
+            styleId = (color == "" || color == null) ? "brown" : color;
+        }
+        let styleData = await getStyleData(styleId);
+        if (!styleData) {
+            styleData = await getStyleData("default");
+        }
         const title = document.querySelector(".title");
         const cards = document.querySelectorAll(".card");
 

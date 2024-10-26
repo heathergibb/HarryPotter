@@ -1,10 +1,9 @@
 import ExternalServices from "./ExternalServices.mjs";
 import HouseDetails from "./HouseDetails.mjs";
-import { loadHeaderFooter, getURLParam, preloadBasicStyling } from "./utils.mjs";
+import { initPage, getURLParam, preloadBasicStyling } from "./utils.mjs";
 
-loadHeaderFooter();
+initPage();
 const houseName = getURLParam("house"); 
-// preload background image and some styling
 preloadBasicStyling(houseName);
 main();
 

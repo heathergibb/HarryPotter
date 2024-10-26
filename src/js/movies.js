@@ -1,8 +1,8 @@
 import ExternalServices from "./ExternalServices.mjs"
 import MovieList from "./MovieList.mjs";
-import { loadHeaderFooter, preloadBasicStyling } from "./utils.mjs";
+import { initPage, preloadBasicStyling } from "./utils.mjs";
 
-loadHeaderFooter();
+initPage();
 preloadBasicStyling("movies");
 
 const apiPath = `${import.meta.env.VITE_MOVIE_API_URL}`

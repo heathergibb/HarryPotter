@@ -1,5 +1,4 @@
-import { handleNoImage, customizeHeaderFooter, isFavorite, setLocalStorage, getLocalStorage } from "./utils.mjs";
-import ExternalServices from "./ExternalServices.mjs";
+import { handleNoImage, customizeHeaderFooter, isFavorite, setLocalStorage, getLocalStorage, getStyleData } from "./utils.mjs";
 
 export default class CharacterDetails {
     constructor(charId, dataSource) {
@@ -9,15 +8,20 @@ export default class CharacterDetails {
     }
 
     async loadCharacterPage() {
+        // get character data from api
         const characters = await this.dataSource.getData();
+        // filter character data to selected character
         this.data = characters.find((character) => character.id === this.charId);
 
+        // build the character page using this element and template
         const element = document.querySelector(".detail-card");
         const templateHTML = characterDetailTemplate(this.data);
- 
         element.insertAdjacentHTML("afterbegin", templateHTML);
 
+        // customize colors and backgrounds based on house
         this.customizeDisplay();
+
+        //add an event listener on the favorites button
         this.addFavButtonListener();
 
     }
@@ -28,11 +32,7 @@ export default class CharacterDetails {
         const body = document.body.style;
         body.backgroundImage = `url("/images/${house}/background.webp")`;   
 
-        // get the style information from json file        
-        const service = new ExternalServices("/json/style.json");
-        const data = await service.getData();
-        // get style choices for this house
-        const styleData = data.find(item => item.Id.toLowerCase() === house);
+        const styleData = await getStyleData(house);
         const title = document.querySelector(".detail-title");
         const image = document.querySelector(".detail-img");
         const details = document.querySelector(".detail-container");

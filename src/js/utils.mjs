@@ -1,3 +1,5 @@
+import ExternalServices from "./ExternalServices.mjs";
+
 // get paramater from url
 export function getURLParam(param) {
   const searchParam = new URLSearchParams(window.location.search);
@@ -14,12 +16,14 @@ export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
 
+//check if a character has been selected as a favorite
 export function isFavorite(charId) {
   const favList = getLocalStorage("favArray") || [];
   const result = favList.find((data) => data.id == charId);
   return result ? true : false;
 }
 
+//render the html from given data
 export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
   const htmlStrings = list.map(templateFn); 
   if (clear) {
@@ -28,15 +32,22 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
+//return the html for a partial i.e. header or footer
 export async function loadPartial(path) {
   const html = await fetch(path).then(response => response.text());
   return html;
 }
 
+//if no character image in the api then display a generic image
 export function handleNoImage(imagePath) {
   return (imagePath == "" || imagePath == null) ? "/images/no-image.webp" : imagePath;
 }
+ export async function initPage() {
+  loadHeaderFooter();
+  preloadFonts();
+ }
 
+//load the header and footer partails
 export async function loadHeaderFooter() {
   const headerPartial = await loadPartial("../partials/header.html");
   const headerElement = document.getElementById("header");
@@ -46,6 +57,10 @@ export async function loadHeaderFooter() {
   const footerElement = document.getElementById("footer");
   footerElement.innerHTML = footerPartial;
 
+  addNavEventListeners();
+}
+
+export async function preloadFonts() {
   // Preconnect to Google Fonts
   const preconnect1 = document.createElement("link");
   preconnect1.rel = "preconnect";
@@ -63,8 +78,6 @@ export async function loadHeaderFooter() {
   fontLink.href = "https://fonts.googleapis.com/css2?family=Averia+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Cinzel:wght@400..900&family=DM+Serif+Display:ital@0;1&display=swap";
   fontLink.rel = "stylesheet";
   document.head.appendChild(fontLink);
-
-  addNavEventListeners();
 }
 
 export async function addNavEventListeners() {
@@ -120,4 +133,11 @@ export async function preloadBasicStyling(page) {
 
     const title = document.querySelector(".title");
     title.style.backgroundImage = `url("/images/${page}/title.webp")`;
+}
+
+export async function getStyleData(styleId) {
+  // get the style information from json file        
+  const service = new ExternalServices("/json/style.json");
+  const data = await service.getData();
+  return data.find(item => item.Id.toLowerCase() === styleId.toLowerCase());
 }
